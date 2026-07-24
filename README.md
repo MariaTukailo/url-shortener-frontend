@@ -1,16 +1,70 @@
-# React + Vite
+# URL Shortener - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Single Page Application (SPA) for the URL Shortener service built with React.
 
-Currently, two official plugins are available:
+##  Backend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Server application: [url-shortener](https://github.com/MariaTukailo/url-shortener)
 
-## React Compiler
+## 🛠 Technologies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- Vite
+- Axios
+- React Hooks (useState, useEffect)
+- CSS
 
-## Expanding the Oxlint configuration
+##  Pages
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+| Page | Description |
+|------|-------------|
+| **Sign In** | Login form |
+| **Sign Up** | New user registration form |
+| **My Links** | Create short links, view and delete own links, edit profile |
+| **Admin Panel** | Manage users (edit, delete) and view/delete all links |
+
+## Screenshots
+
+### Login page
+![login.png](screenshots/login.png)
+
+### Registration page
+![auth.png](screenshots/auth.png)
+
+### User panel
+![user.png](screenshots/user.png)
+
+### Admin panel
+![admin.png](screenshots/admin.png)
+
+##  How Authorization Works
+
+- JWT token is stored in browser `localStorage`
+- Token is automatically attached to every API request via Axios interceptor
+- On token expiration, user is redirected to the login page
+- Admin panel is shown based on user role (USER/ADMIN)
+
+##  Getting Started
+
+The app opens at http://localhost:5173
+
+Docker
+bash
+# Build the image
+docker build -t url-shortener-frontend .
+
+# Run the container
+docker run -p 80:80 url-shortener-frontend
+Then open http://localhost
+
+With docker-compose
+Run from the backend repository:
+
+bash
+docker compose up --build
+This starts backend, frontend, and PostgreSQL together.
+
+### Local
+```bash
+npm install
+npm run dev
